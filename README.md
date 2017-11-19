@@ -1,9 +1,3 @@
 # Squeezr
-A very simple Quizz app, made with **Python**, **Flask** and **Skeleton**.
-
-```
-$ virtualenv venv -p python3.5
-$ source venv/bin/activate
-$ pip install -f requirements.txt
-$ python runserver
-```
+A simple quizz app based on **Python**, **Flask** and **Skeleton**.
+Currently a *work in progress* project.
