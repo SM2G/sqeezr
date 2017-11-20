@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import os
-from cerbereapp import app
+from squeezr import app
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
