@@ -1,8 +1,9 @@
 @import '../../scss/colors.scss';
 
 .toolbar {
-	background-color: $background;
 	flex-wrap: wrap;
+
+	background-color: $background;
 
 	h1 {
 		font-family: 'Lato', sans-serif;
