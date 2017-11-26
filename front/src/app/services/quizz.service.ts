@@ -6,7 +6,9 @@ import {
 
 import { IQuestion } from '../models/question.model';
 
+import { map } from 'lodash';
 import { Observable } from 'rxjs/Observable';
+import { map as rxMap } from 'rxjs/operators';
 
 @Injectable()
 export class QuizzService {
@@ -18,6 +20,15 @@ export class QuizzService {
 	}
 
 	public initQuestions() {
-		this.questions = this._questionsCollection.valueChanges();
+		this.questions = this._questionsCollection.snapshotChanges().pipe(
+			rxMap(questions =>
+				map(questions, q => {
+					const data = q.payload.doc.data() as IQuestion;
+					const id = q.payload.doc.id;
+
+					return { id, ...data };
+				}),
+			),
+		);
 	}
 }
