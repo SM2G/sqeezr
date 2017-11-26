@@ -1,4 +1,4 @@
-./Front/src/environments/*.ts
+./Front/src/environments/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
