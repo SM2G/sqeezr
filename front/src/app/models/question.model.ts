@@ -4,3 +4,8 @@ export interface IQuestion {
 	answers: string[];
 	validAnswer: string;
 }
+
+export interface IAnsweredQuestion extends IQuestion {
+	isCorrect: boolean;
+	givenAnswer: string;
+}

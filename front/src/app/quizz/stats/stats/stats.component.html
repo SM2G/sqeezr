@@ -1,0 +1,5 @@
+<div *ngIf="!(hasCompletedQuizz | async)" class="no-answers">
+	<h1>You must complete the quizz before checking the stats !</h1>
+</div>
+<div *ngIf="(hasCompletedQuizz | async)">
+</div>

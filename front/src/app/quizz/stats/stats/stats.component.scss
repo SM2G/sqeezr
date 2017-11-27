@@ -1,0 +1,15 @@
+@import 'src/scss/colors.scss';
+
+.no-answers {
+	h1 {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+
+		font-family: 'Lato', sans-serif;
+		font-weight: 100;
+		font-size: 25px;
+		color: $warning;
+	}
+}

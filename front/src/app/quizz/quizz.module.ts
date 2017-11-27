@@ -13,8 +13,10 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 import { quizzRouting } from './quizz.routes';
 
-import { QuizzComponent } from './quizz.component';
 import { QuizzService } from '../services/quizz.service';
+
+import { QuizzComponent } from './quizz.component';
+import { StatsComponent } from './stats/stats/stats.component';
 
 @NgModule({
 	imports: [
@@ -31,7 +33,7 @@ import { QuizzService } from '../services/quizz.service';
 		MatButtonModule,
 		MatProgressSpinnerModule,
 	],
-	declarations: [QuizzComponent],
+	declarations: [QuizzComponent, StatsComponent],
 	providers: [QuizzService],
 })
 export class QuizzModule {}
