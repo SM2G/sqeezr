@@ -13,3 +13,37 @@
 		color: $warning;
 	}
 }
+
+.stats-container {
+	display: flex;
+	flex-flow: column wrap;
+	flex: 1 1 auto;
+	margin-left: 1rem;
+
+	.summary {
+		flex-flow: column wrap;
+
+		h1 {
+			font-family: 'Lato', sans-serif;
+			font-weight: 400;
+
+			&#valid {
+				color: $valid;
+			}
+			&#invalid {
+				color: $warning;
+			}
+		}
+	}
+
+	.recap {
+		background: $background;
+
+		&.valid {
+			background: $valid;
+		}
+		&.invalid {
+			background: $warning;
+		}
+	}
+}

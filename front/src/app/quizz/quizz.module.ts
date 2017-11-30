@@ -6,6 +6,7 @@ import {
 	MatRadioModule,
 	MatProgressSpinnerModule,
 	MatButtonModule,
+	MatExpansionModule,
 } from '@angular/material';
 
 import { AngularFireModule } from 'angularfire2';
@@ -32,6 +33,7 @@ import { StatsComponent } from './stats/stats/stats.component';
 		MatRadioModule,
 		MatButtonModule,
 		MatProgressSpinnerModule,
+		MatExpansionModule,
 	],
 	declarations: [QuizzComponent, StatsComponent],
 	providers: [QuizzService],

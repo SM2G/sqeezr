@@ -15,33 +15,35 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 @Injectable()
 export class QuizzService {
 	public questions$: Observable<IQuestion[]>;
-	public exposedAnswers$: Observable<IAnsweredQuestion>;
+	public exposedAnswers$: Observable<IAnsweredQuestion[]>;
+	public count: number;
 
 	private _questionsCollection: AngularFirestoreCollection<IQuestion>;
-	private _answers$: BehaviorSubject<IAnsweredQuestion>;
+	private _answers$: BehaviorSubject<IAnsweredQuestion[]>;
 
 	constructor(private _afs: AngularFirestore, private _router: Router) {
 		this._questionsCollection = _afs.collection<IQuestion>('questions');
-		this._answers$ = new BehaviorSubject(new Object() as IAnsweredQuestion);
+		this._answers$ = new BehaviorSubject(null);
+		this.count = 0;
 
 		this.exposedAnswers$ = this._answers$.asObservable();
 	}
 
 	public initQuestions() {
-		// this.questions$ = this._questionsCollection.snapshotChanges().pipe(
-		// 	rxMap(questions =>
-		// 		map(questions, q => {
-		// 			const data = q.payload.doc.data() as IQuestion;
-		// 			const id = q.payload.doc.id;
-		// 			return { id, ...data };
-		// 		}),
-		// 	),
-		// );
+		this.questions$ = this._questionsCollection.snapshotChanges().pipe(
+			rxMap(questions =>
+				map(questions, q => {
+					const data = q.payload.doc.data() as IQuestion;
+					const id = q.payload.doc.id;
+					return { id, ...data };
+				}),
+			),
+		);
 	}
 
 	public checkAnswer(answer: string, question: IQuestion): void {
 		const id = question.id;
-		const answers = this._answers$.value;
+		const answers = this._answers$.value || [];
 
 		answers[id] = {
 			...question,
