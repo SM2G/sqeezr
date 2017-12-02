@@ -1,1 +1,11 @@
 @import 'src/scss/colors.scss';
+
+.home-header {
+	display: flex;
+	flex-flow: column wrap;
+	flex: 0 1 auto;
+	justify-content: center;
+
+	margin: 1rem;
+	color: #fff;
+}

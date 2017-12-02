@@ -1,8 +1,9 @@
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { MatButtonModule } from '@angular/material';
+import { FormsModule, ReactiveFormsModule, FormBuilder } from '@angular/forms';
+import { MatButtonModule, MatInputModule } from '@angular/material';
 
 import { AngularFireModule } from 'angularfire2';
 
@@ -20,13 +21,16 @@ import { environment } from '../environments/environment';
 		BrowserAnimationsModule,
 		RouterModule,
 		UiModule,
+		FormsModule,
+		ReactiveFormsModule,
 
 		mainAppRouting,
 
 		AngularFireModule.initializeApp(environment.firebase),
 		MatButtonModule,
+		MatInputModule,
 	],
-	providers: [],
+	providers: [FormBuilder],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}

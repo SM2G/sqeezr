@@ -1,1 +1,13 @@
-<a mat-raised-button color="primary" routerLink="quizz" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Take a quizz !</a>
+<form (ngSubmit)="startQuizz()" [formGroup]="credentials" class="home-header">
+	<mat-form-field color="accent">
+		<input formControlName="name" placeholder="Votre nom" matInput>
+		<mat-error *ngIf="credentials.get('name')?.hasError('required')">Votre nom est
+			<strong>requis</strong>
+		</mat-error>
+	</mat-form-field>
+	<mat-form-field color="accent">
+		<input formControlName="mail" placeholder="Votre adresse mail" matInput>
+		<mat-error *ngIf="credentials.get('mail')?.hasError('email')">Cette adresse mail ne semble pas valide...</mat-error>
+	</mat-form-field>
+	<button color="accent" types="submit" [disabled]="credentials?.invalid" mat-raised-button>Commencer le quizz</button>
+</form>
