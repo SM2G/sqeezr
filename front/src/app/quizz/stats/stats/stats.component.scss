@@ -18,10 +18,12 @@
 	display: flex;
 	flex-flow: column wrap;
 	flex: 1 1 auto;
-	margin-left: 1rem;
+	margin: 0 0.6rem;
 
 	.summary {
-		flex-flow: column wrap;
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: space-around;
 
 		h1 {
 			font-family: 'Lato', sans-serif;
@@ -37,13 +39,22 @@
 	}
 
 	.recap {
-		background: $background;
+		background: $dark-background;
 
-		&.valid {
-			background: $valid;
+		.valid {
+			mat-panel-title {
+				color: $valid;
+			}
 		}
-		&.invalid {
-			background: $warning;
+		.invalid {
+			mat-panel-title {
+				color: $warning;
+			}
+		}
+
+		p {
+			color: $font-color;
+			font-size: 16px;
 		}
 	}
 }
