@@ -17,7 +17,7 @@ need the Angular CLI :
 
 To start the Angular front in dev mod :  
 ```
-$ cd Front
+$ cd front
 $ yarn
 $ npm run start
 ```

@@ -27,9 +27,6 @@ var/
 *.mo
 *.pot
 
-# App
-*.json
-
 # Flask instance folder
 instance/
 
