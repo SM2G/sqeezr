@@ -10,4 +10,6 @@
 		<mat-error *ngIf="credentials.get('mail')?.hasError('email')">Cette adresse mail ne semble pas valide...</mat-error>
 	</mat-form-field>
 	<button color="accent" types="submit" [disabled]="credentials?.invalid" mat-raised-button>Commencer le quizz</button>
+
+	<p class="discreet-message">*Votre adresse mail n'est partagée avec aucune tierce partie et n'est pas accessible au public.</p>
 </form>

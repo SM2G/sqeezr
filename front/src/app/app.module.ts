@@ -13,6 +13,8 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 
 import { mainAppRouting } from './app.routes';
+import { CanActivateQuizz } from './guards/canActivateQuizz';
+
 import { environment } from '../environments/environment';
 
 @NgModule({
@@ -30,7 +32,7 @@ import { environment } from '../environments/environment';
 		MatButtonModule,
 		MatInputModule,
 	],
-	providers: [FormBuilder],
+	providers: [FormBuilder, CanActivateQuizz],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -6,6 +6,12 @@
 	flex: 0 1 auto;
 	justify-content: center;
 
-	margin: 1rem;
+	margin: 2rem;
 	color: #fff;
+}
+
+.discreet-message {
+	color: $font-color;
+	font-size: 12px;
+	opacity: 0.4;
 }

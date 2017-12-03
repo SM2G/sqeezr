@@ -35,7 +35,7 @@ import { StatsComponent } from './stats/stats/stats.component';
 		MatProgressSpinnerModule,
 		MatExpansionModule,
 	],
-	declarations: [QuizzComponent, StatsComponent],
 	providers: [QuizzService],
+	declarations: [QuizzComponent, StatsComponent],
 })
 export class QuizzModule {}

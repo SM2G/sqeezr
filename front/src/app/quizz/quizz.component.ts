@@ -34,5 +34,8 @@ export class QuizzComponent implements OnInit {
 		this._quizzService.checkAnswer(event.value, question);
 	}
 
-	public endQuizz = (): void => this._quizzService.getAnswersStats();
+	public endQuizz(): void {
+		localStorage.setItem('finished', 'true');
+		this._quizzService.getAnswersStats();
+	}
 }
