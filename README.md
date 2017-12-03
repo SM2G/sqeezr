@@ -27,7 +27,7 @@ open your browser on `localhost:4200`.
 
 If you want to build the project for prod :  
 ```
-$ cd Front
+$ cd front
 $ yarn
 $ npm run build
 ```
