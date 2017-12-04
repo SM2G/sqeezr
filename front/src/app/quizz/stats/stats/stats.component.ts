@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import {
+	AngularFirestore,
+	AngularFirestoreCollection,
+} from 'angularfire2/firestore';
 
 import { QuizzService } from '../../../services/quizz.service';
+
 import { IAnsweredQuestion } from '../../../models/question.model';
+import { IUser } from '../../../models/user.model';
 
 import { toPairs, forEach } from 'lodash';
 import { Observable } from 'rxjs/Observable';
@@ -20,11 +26,20 @@ export class StatsComponent implements OnInit {
 	public count: number;
 	public correctAnswers: number;
 
-	constructor(private _quizzService: QuizzService) {
+	private _usersCollection: AngularFirestoreCollection<IUser>;
+	private _users: Observable<IUser[]>;
+
+	constructor(
+		private _quizzService: QuizzService,
+		private _afs: AngularFirestore,
+	) {
 		this.hasCompletedQuizz = new BehaviorSubject(false);
 		this.filteredAnswers$ = new BehaviorSubject([] as IAnsweredQuestion[]);
 		this.answers$ = _quizzService.exposedAnswers$;
 		this.correctAnswers = 0;
+
+		this._usersCollection = this._afs.collection<IUser>('users');
+		this._users = this._usersCollection.valueChanges();
 	}
 
 	ngOnInit() {
@@ -51,7 +66,18 @@ export class StatsComponent implements OnInit {
 				}
 			});
 			this.filteredAnswers$.next(filtered);
+			this._saveUserData();
 			this.hasCompletedQuizz.next(true);
 		});
+	}
+
+	private _saveUserData(): void {
+		const score = this.correctAnswers;
+		const user = {
+			name: localStorage.getItem('name'),
+			mail: localStorage.getItem('mail'),
+		} as IUser;
+
+		this._usersCollection.add(user);
 	}
 }
