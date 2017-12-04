@@ -76,6 +76,7 @@ export class StatsComponent implements OnInit {
 		const user = {
 			name: localStorage.getItem('name'),
 			mail: localStorage.getItem('mail'),
+			score: score,
 		} as IUser;
 
 		this._usersCollection.add(user);
