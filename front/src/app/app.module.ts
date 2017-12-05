@@ -7,14 +7,13 @@ import {
 	MatButtonModule,
 	MatInputModule,
 	MatTableModule,
+	MatToolbarModule,
+	MatProgressSpinnerModule,
 } from '@angular/material';
+import { CdkTableModule } from '@angular/cdk/table';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
-
-import { CdkTableModule } from '@angular/cdk/table';
-
-import { UiModule } from './ui/ui.module';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -32,7 +31,6 @@ import { environment } from '../environments/environment';
 	imports: [
 		BrowserAnimationsModule,
 		RouterModule,
-		UiModule,
 		FormsModule,
 		ReactiveFormsModule,
 
@@ -44,6 +42,8 @@ import { environment } from '../environments/environment';
 		MatButtonModule,
 		MatInputModule,
 		MatTableModule,
+		MatToolbarModule,
+		MatProgressSpinnerModule,
 
 		CdkTableModule,
 	],

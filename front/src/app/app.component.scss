@@ -1,0 +1,17 @@
+@import 'src/scss/colors.scss';
+
+.toolbar {
+	flex-wrap: row wrap;
+
+	background-color: $background;
+
+	a {
+		font-family: 'Lato', sans-serif;
+		font-weight: 100;
+		font-size: 30px;
+
+		color: $primary;
+		text-decoration: none;
+		text-transform: none;
+	}
+}

@@ -1,4 +1,9 @@
-<div class="scores-table mat-elevation-z5">
+<div class="loading-overlay" *ngIf="!(dataSource.hasLoaded$ | async)">
+	<mat-spinner [strokeWidth]="2" color="accent"></mat-spinner>
+	<p>Nous récupérons les scores, merci de patienter !</p>
+</div>
+
+<div *ngIf="dataSource.hasLoaded$ | async" class="scores-table mat-elevation-z5">
 	<mat-table #table [dataSource]="dataSource">
 
 		<ng-container matColumnDef="rank">

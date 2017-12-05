@@ -8,7 +8,7 @@ import {
 import { UserService } from '../services/user.service';
 import { IUser } from '../models/user.model';
 
-import { sortBy, reverse, forEach } from 'lodash';
+import { sortBy, reverse, forEach, random } from 'lodash';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { map } from 'rxjs/operators';
@@ -35,6 +35,8 @@ export class ScoresComponent {
 }
 
 export class UsersDataSource extends DataSource<IUserWithRank> {
+	public hasLoaded$: BehaviorSubject<boolean>;
+
 	private _usersCollection: AngularFirestoreCollection<IUser>;
 	private _users$: Observable<IUser[]>;
 	private _sortedUsers$: BehaviorSubject<IUserWithRank[]>;
@@ -44,6 +46,7 @@ export class UsersDataSource extends DataSource<IUserWithRank> {
 		private _afs: AngularFirestore,
 	) {
 		super();
+		this.hasLoaded$ = new BehaviorSubject(false);
 		this._sortedUsers$ = new BehaviorSubject(null);
 
 		this._usersCollection = this._afs.collection<IUser>('users');
@@ -55,6 +58,7 @@ export class UsersDataSource extends DataSource<IUserWithRank> {
 				const sortedData = reverse(sortBy(users, ['score']));
 				forEach(sortedData, user => (user.rank = rank++));
 				this._sortedUsers$.next(sortedData);
+				this.hasLoaded$.next(true);
 			}
 		});
 	}

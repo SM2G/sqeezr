@@ -14,10 +14,16 @@ body {
 
 .loading-overlay {
 	display: flex;
+	flex-flow: column wrap;
 	justify-content: center;
 	align-items: center;
 
 	> mat-spinner {
 		margin: 2rem;
+	}
+
+	> p {
+		color: $font-color;
+		opacity: 0.8;
 	}
 }
