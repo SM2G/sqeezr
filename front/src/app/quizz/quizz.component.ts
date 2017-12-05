@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { MatRadioChange } from '@angular/material';
 import {
 	AngularFirestore,
 	AngularFirestoreCollection,
@@ -9,7 +10,7 @@ import { QuizzService } from '../services/quizz.service';
 import { IQuestion } from '../models/question.model';
 
 import { Observable } from 'rxjs/Observable';
-import { MatRadioChange } from '@angular/material';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Component({
 	selector: 'sq-quizz',
@@ -18,6 +19,7 @@ import { MatRadioChange } from '@angular/material';
 })
 export class QuizzComponent implements OnInit {
 	public questions$: Observable<IQuestion[]>;
+	public hasAnsweredAllQuestions$: BehaviorSubject<boolean>;
 
 	constructor(
 		private _afs: AngularFirestore,
@@ -25,6 +27,7 @@ export class QuizzComponent implements OnInit {
 	) {
 		_quizzService.initQuestions();
 		this.questions$ = _quizzService.questions$;
+		this.hasAnsweredAllQuestions$ = new BehaviorSubject(false);
 	}
 
 	ngOnInit() {}

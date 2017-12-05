@@ -14,5 +14,5 @@
 	</div>
 </div>
 <div class="quizz-footer">
-	<button (click)="endQuizz()" color="primary" mat-raised-button>Valider</button>
+	<button (click)="endQuizz()" color="primary" [disabled]="!hasAnsweredAllQuestions$ | async" mat-raised-button>Valider</button>
 </div>
