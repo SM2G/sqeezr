@@ -16,15 +16,13 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 export class QuizzService {
 	public questions$: Observable<IQuestion[]>;
 	public exposedAnswers$: Observable<IAnsweredQuestion[]>;
-	public count: number;
 
 	private _questionsCollection: AngularFirestoreCollection<IQuestion>;
-	private _answers$: BehaviorSubject<IAnsweredQuestion[]>;
+	public _answers$: BehaviorSubject<IAnsweredQuestion[]>;
 
 	constructor(private _afs: AngularFirestore, private _router: Router) {
 		this._questionsCollection = _afs.collection<IQuestion>('questions');
 		this._answers$ = new BehaviorSubject(null);
-		this.count = 0;
 
 		this.exposedAnswers$ = this._answers$.asObservable();
 	}

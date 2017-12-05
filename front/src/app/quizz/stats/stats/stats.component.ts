@@ -43,32 +43,34 @@ export class StatsComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.answers$.subscribe(givenAnswers => {
-			const answers = toPairs(givenAnswers) as IAnsweredQuestion[];
-			const filtered = this.filteredAnswers$.value;
+		this.answers$
+			.subscribe(givenAnswers => {
+				const answers = toPairs(givenAnswers) as IAnsweredQuestion[];
+				const filtered = this.filteredAnswers$.value;
 
-			if (!answers || answers.length <= 0) {
-				this.count = 0;
-				this.correctAnswers = 0;
-				this.hasCompletedQuizz.next(false);
-				return;
-			}
-			this.count = answers.length;
-			forEach(answers, (answerArray: [string, IAnsweredQuestion]) => {
-				const id = answerArray[0];
-				const answer = answerArray[1];
-
-				if (id === answer.id) {
-					if (answer.isCorrect) {
-						this.correctAnswers++;
-					}
-					filtered.push(answer);
+				if (!answers || answers.length <= 0) {
+					this.count = 0;
+					this.correctAnswers = 0;
+					this.hasCompletedQuizz.next(false);
+					return;
 				}
-			});
-			this.filteredAnswers$.next(filtered);
-			this._saveUserData();
-			this.hasCompletedQuizz.next(true);
-		});
+				this.count = answers.length;
+				forEach(answers, (answerArray: [string, IAnsweredQuestion]) => {
+					const id = answerArray[0];
+					const answer = answerArray[1];
+
+					if (id === answer.id) {
+						if (answer.isCorrect) {
+							this.correctAnswers++;
+						}
+						filtered.push(answer);
+					}
+				});
+				this.filteredAnswers$.next(filtered);
+				this._saveUserData();
+				this.hasCompletedQuizz.next(true);
+			})
+			.unsubscribe();
 	}
 
 	private _saveUserData(): void {
@@ -79,6 +81,7 @@ export class StatsComponent implements OnInit {
 			score: score,
 		} as IUser;
 
-		this._usersCollection.add(user);
+		if (!localStorage.getItem('processed')) this._usersCollection.add(user);
+		localStorage.setItem('processed', '1');
 	}
 }

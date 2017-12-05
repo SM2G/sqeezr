@@ -7,8 +7,9 @@ import {
 } from 'angularfire2/firestore';
 
 import { QuizzService } from '../services/quizz.service';
-import { IQuestion } from '../models/question.model';
+import { IQuestion, IAnsweredQuestion } from '../models/question.model';
 
+import { toPairs } from 'lodash';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
@@ -21,6 +22,8 @@ export class QuizzComponent implements OnInit {
 	public questions$: Observable<IQuestion[]>;
 	public hasAnsweredAllQuestions$: BehaviorSubject<boolean>;
 
+	private _questionCount: number;
+
 	constructor(
 		private _afs: AngularFirestore,
 		private _quizzService: QuizzService,
@@ -30,15 +33,31 @@ export class QuizzComponent implements OnInit {
 		this.hasAnsweredAllQuestions$ = new BehaviorSubject(false);
 	}
 
-	ngOnInit() {}
+	ngOnInit() {
+		this.questions$.subscribe(questions => {
+			if (!questions) return;
+			this._questionCount = questions.length;
+		});
+	}
 
 	public checkAnswer(event: MatRadioChange, question: IQuestion): void {
 		if (!event || !question) return;
 		this._quizzService.checkAnswer(event.value, question);
+		this._endQuizzCheck();
 	}
 
 	public endQuizz(): void {
 		localStorage.setItem('finished', 'true');
 		this._quizzService.getAnswersStats();
+	}
+
+	private _endQuizzCheck(): void {
+		const answers = toPairs(
+			this._quizzService._answers$.value,
+		) as IAnsweredQuestion[];
+
+		if (answers.length === this._questionCount) {
+			this.hasAnsweredAllQuestions$.next(true);
+		}
 	}
 }
