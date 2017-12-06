@@ -1,0 +1,20 @@
+<div class="loading-overlay" *ngIf="!(questions$ | async)">
+	<mat-spinner [strokeWidth]="2" color="accent"></mat-spinner>
+	<p>Nous récupérons les questions, préparez vous !</p>
+</div>
+<div class="quizz-container">
+	<div *ngFor="let question of questions$ | async" class="question-card">
+		<div class="question-title">{{ question?.question }}</div>
+		<div class="question-answers">
+			<mat-radio-group (change)="checkAnswer($event, question)">
+				<mat-radio-button *ngFor="let answer of question?.answers" [value]="answer">
+					{{ answer }}
+				</mat-radio-button>
+			</mat-radio-group>
+		</div>
+	</div>
+
+	<div class="quizz-footer">
+		<button (click)="endQuizz()" color="primary" [disabled]="!(hasAnsweredAllQuestions$ | async)" mat-raised-button>Valider</button>
+	</div>
+</div>

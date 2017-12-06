@@ -1,3 +1,5 @@
+front/src/environments/*.ts
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -24,9 +26,6 @@ var/
 # Translations
 *.mo
 *.pot
-
-# App
-*.json
 
 # Flask instance folder
 instance/

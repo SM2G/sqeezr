@@ -1,0 +1,22 @@
+<div *ngIf="!(hasCompletedQuizz | async)" class="no-answers">
+	<h1>Vous devez faire le quizz avant de pouvoir consulter les scores !</h1>
+</div>
+<div *ngIf="(hasCompletedQuizz | async)" class="stats-container">
+	<div class="summary">
+		<h1 *ngIf="correctAnswers === 1" id="valid">Une bonne réponse</h1>
+		<h1 *ngIf="correctAnswers > 1" id="valid">{{ correctAnswers }} bonnes réponses</h1>
+
+		<h1 *ngIf="count - correctAnswers === 1" id="invalid">Une mauvaise réponse</h1>
+		<h1 *ngIf="count - correctAnswers > 1" id="invalid">{{ count - correctAnswers }} mauvaises réponses</h1>
+	</div>
+
+	<mat-accordion>
+		<mat-expansion-panel *ngFor="let answer of filteredAnswers$ | async" class="recap">
+			<mat-expansion-panel-header [ngClass]="{valid: answer?.isCorrect, invalid: !answer?.isCorrect}">
+				<mat-panel-title>{{ answer?.question }}</mat-panel-title>
+			</mat-expansion-panel-header>
+			<p>Votre réponse : {{ answer?.givenAnswer }}</p>
+			<p>Réponse attendue : {{ answer?.validAnswer }}</p>
+		</mat-expansion-panel>
+	</mat-accordion>
+</div>

@@ -1,0 +1,29 @@
+@import 'scss/colors.scss';
+
+body {
+	font-family: 'Lato', sans-serif;
+
+	background-color: $background;
+	margin: 0;
+}
+
+// Small useful classes / IDs
+.fill-space {
+	flex: 1 1 auto;
+}
+
+.loading-overlay {
+	display: flex;
+	flex-flow: column wrap;
+	justify-content: center;
+	align-items: center;
+
+	> mat-spinner {
+		margin: 2rem;
+	}
+
+	> p {
+		color: $font-color;
+		opacity: 0.8;
+	}
+}

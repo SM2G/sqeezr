@@ -1,0 +1,17 @@
+@import 'src/scss/colors.scss';
+
+.home-header {
+	display: flex;
+	flex-flow: column wrap;
+	flex: 0 1 auto;
+	justify-content: center;
+
+	margin: 2rem;
+	color: #fff;
+}
+
+.discreet-message {
+	color: $font-color;
+	font-size: 12px;
+	opacity: 0.4;
+}

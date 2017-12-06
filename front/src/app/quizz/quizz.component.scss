@@ -1,0 +1,51 @@
+@import 'src/scss/colors.scss';
+
+.quizz-container {
+	display: flex;
+	flex-flow: column wrap;
+	align-items: flex-start;
+
+	margin-top: 1rem;
+}
+
+.question-card {
+	display: flex;
+	flex-flow: column wrap;
+	padding: 1rem;
+	min-width: calc(33% + 50px);
+
+	color: $font-color;
+
+	.question-title {
+		font-size: 20px;
+
+		padding-bottom: 0.4rem;
+
+		border-bottom: 1px solid $accent;
+	}
+
+	.question-answers {
+		margin-top: 0.5rem;
+		> mat-radio-group {
+			display: inline-flex;
+			flex-flow: column wrap;
+
+			> mat-radio-button {
+				margin: 0.25rem 0;
+			}
+		}
+	}
+}
+
+.quizz-footer {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+
+	display: flex;
+	justify-content: flex-end;
+
+	> button {
+		margin: 0.5rem;
+	}
+}
