@@ -1,15 +1,6 @@
 # Squeezr
 A simple quizz app based on **Python**, **Flask** and **Skeleton**.
 Currently a *work in progress* project.
-```
-$ virtualenv venv -p python3.6
-$ source venv/bin/activate
-$ pip install -f requirements.txt
-$ cp questions.json.sample questions.json # and add your questions
-$ python run.py
-```
-
----
 
 The front is built on Angular 5. If you want to deploy / dev the project, you'll
 need the Angular CLI : 
